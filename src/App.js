@@ -1,10 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header';
+import Nav from './components/Nav';
+import Profile from './components/Profile';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <h1> Hello Aleks this is your First React App</h1>
+    <div className="wrapper"> 
+      <Header />
+      <Nav />
+      <Profile />
     </div>
   );
 }
