@@ -1,4 +1,5 @@
 import React from 'react';
+import classes from './Profile.module.css'
 
 const Profile = () =>{
     return(
@@ -17,10 +18,10 @@ const Profile = () =>{
             </div>
             <div>
               Posts
-              <div>
+              <div className={classes.item}>
                 post1
               </div>
-              <div>
+              <div className={classes.item}>
                 post2
               </div>
             </div>

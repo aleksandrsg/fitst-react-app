@@ -1,0 +1,9 @@
+.nav {
+    grid-area: n;
+    background-color: none;
+    border: solid 1px black;
+  }
+
+.item {
+  background-color: red;
+}

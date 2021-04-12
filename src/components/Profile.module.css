@@ -1,0 +1,14 @@
+.content {
+    grid-area: c;
+    background-color: none;
+    border: solid 1px black;
+  }
+  
+  .avatar{
+    width: 200px;
+    height: 200px;
+  }
+
+  .item {
+    background-color: aquamarine;
+  }
