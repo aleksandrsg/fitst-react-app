@@ -14,3 +14,9 @@
   grid-template-columns: 2fr 10fr;
   grid-gap: 10px;
 }
+
+.content-wrapper {
+  grid-area: c;
+  background-color: none;
+  border: solid 1px black;
+}
