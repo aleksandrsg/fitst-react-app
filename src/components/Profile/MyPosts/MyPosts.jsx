@@ -12,8 +12,8 @@ const MyPosts = () =>{
               <div>
                 Posts
               </div>
-              <Post />
-              <Post />
+              <Post message = "Hi this is my first Props" likes="15" dislikes="1"/>
+              <Post message = "I learn React.js" likes="100" dislikes="0"/>
               <Post />
           </div>
     );
