@@ -1,9 +1,18 @@
 .nav {
     grid-area: n;
-    background-color: none;
+    background-color: burlywood;
     border: solid 1px black;
+    padding: 20px;
   }
 
-.item {
-  background-color: red;
+
+
+.item a {
+  color: black;
+  text-decoration:none;
+  
+}
+
+.item a.activeLink {
+  color: gold;
 }
