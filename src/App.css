@@ -15,7 +15,7 @@
   grid-gap: 10px;
 }
 
-.content-wrapper {
+.wrapper-content {
   grid-area: c;
   background-color: none;
   border: solid 1px black;
