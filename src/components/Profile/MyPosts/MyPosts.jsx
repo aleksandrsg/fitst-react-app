@@ -5,13 +5,6 @@ import Post from './Post/Post.jsx'
 
 const MyPosts = (props) => {
 
-    /* let posts = [
-      {id:1, message:"Hi this is my first Props", likes:15, dislikes:100},
-      {id:2, message:"I learn React.js", likes:100, dislikes:0},
-      {id:3, message:"Use .MAP method", likes:20, dislikes:2},
-    ]
-    */
-
     let postsElements = props.posts.map( p => <Post message = {p.message} likes={p.likes} dislikes={p.dislikes}/>)
     
     let newPostElement = React.createRef();
@@ -22,11 +15,16 @@ const MyPosts = (props) => {
         newPostElement.current.value ='';
     }
     
+    let onPostChange = () =>{
+      let text = newPostElement.current.value;
+      props.updateNewPostText(text);
+    }
+
     return(
           <div className={classes.postsBlock}>
               <h3>My posts</h3>
               <div>
-                <textarea ref={newPostElement}></textarea>
+                <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}></textarea>
               </div>
               <div>
                 <button onClick = { addPost }>Add Post</button>

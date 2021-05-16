@@ -6,7 +6,8 @@ let state = {
         {id:1, message:"Hi this is my first Props", likes:15, dislikes:100},
         {id:2, message:"I learn React.js", likes:100, dislikes:0},
         {id:3, message:"Use .MAP method", likes:20, dislikes:2},
-        ]
+        ],
+        newPostText:"This text comes from State.js file"
     },
     dialogsPage:{
         dialogs:[
@@ -33,6 +34,11 @@ export let addPost = (postMessage) =>{
         dislikes:0
     };
     state.profilePage.posts.push(newPost);
+    rerenderEntireTree(state);
+}
+
+export let updateNewPostText = (newText) => {
+    state.profilePage.newPostText = newText;
     rerenderEntireTree(state);
 }
 
