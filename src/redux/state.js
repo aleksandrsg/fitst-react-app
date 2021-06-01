@@ -1,7 +1,8 @@
 let store = {
     rerenderEntireTree() {
         console.log ('State changed');
-    },   
+    },
+    
     _state:{
         profilePage:{
             posts:[
@@ -26,11 +27,29 @@ let store = {
               ],
         },
     },
+
     getState(){
         return this._state;
     },
 
-    addPost(){
+    dispatch(action){ // action is OBJECT { type:'ADD-POST'}
+        if (action.type === 'ADD-POST'){
+            let newPost = {
+                id:4,
+                message: this._state.profilePage.newPostText,
+                likes:0,
+                dislikes:0
+            };
+            this._state.profilePage.posts.push(newPost);
+            this._state.profilePage.newPostText = '';
+            this.rerenderEntireTree(this._state);
+        } else if ( action.type === 'NEW-POST-TEXT'){
+            this._state.profilePage.newPostText = action.newText;
+            this.rerenderEntireTree(this._state);
+            }
+    },
+    
+    /*addPost(){
             let newPost = {
                 id:4,
                 message: this._state.profilePage.newPostText,
@@ -45,7 +64,7 @@ let store = {
     updateNewPostText(newText){
             this._state.profilePage.newPostText = newText;
             this.rerenderEntireTree(this._state);
-        },
+        },*/
 
     subscribe(observer){
             this.rerenderEntireTree = observer;
