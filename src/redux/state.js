@@ -1,7 +1,6 @@
-const ADD_POST = 'ADD-POST';
-const NEW_POST_TEXT = 'NEW-POST-TEXT';
-const NEW_MESSAGE = 'NEW-MESSAGE';
-const NEW_MESSAGE_TEXT ='NEW-MESSAGE-TEXT';
+import profileReducer from "./profile-reducer.js";
+import dialogsReducer from "./dialogs-reducer.js";
+import sidebarReducer from "./sidebar-reducer.js";
 
 let store = {
     rerenderEntireTree() {
@@ -32,83 +31,23 @@ let store = {
               ],
             newMessageText:''
         },
+        sidebar:{}
     },
 
     getState(){
         return this._state;
     },
 
-    dispatch(action){ // action is OBJECT { type:'ADD-POST'}
-        if (action.type === ADD_POST){
-            let newPost = {
-                id:4,
-                message: this._state.profilePage.newPostText,
-                likes:0,
-                dislikes:0
-            };
-            this._state.profilePage.posts.push(newPost);
-            this._state.profilePage.newPostText = '';
-            this.rerenderEntireTree(this._state);
-
-        } else if ( action.type === NEW_POST_TEXT){
-            this._state.profilePage.newPostText = action.newText;
-            this.rerenderEntireTree(this._state);
-        } else if ( action.type === NEW_MESSAGE_TEXT){
-            this._state.dialogsPage.newMessageText = action.body;
-            this.rerenderEntireTree(this._state);
-        } else if (action.type === NEW_MESSAGE){
-            let newMessage =this._state.dialogsPage.newMessageText; 
-            this._state.dialogsPage.messages.push({id:4, message: newMessage});
-            this._state.dialogsPage.newMessageText= '';
-            this.rerenderEntireTree(this._state);
-        }
+    dispatch(action){
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action);
+        this.rerenderEntireTree(this._state);
     },
-    
-    /*addPost(){
-            let newPost = {
-                id:4,
-                message: this._state.profilePage.newPostText,
-                likes:0,
-                dislikes:0
-            };
-            this._state.profilePage.posts.push(newPost);
-            this._state.profilePage.newPostText = '';
-            this.rerenderEntireTree(this._state);
-        },
-
-    updateNewPostText(newText){
-            this._state.profilePage.newPostText = newText;
-            this.rerenderEntireTree(this._state);
-        },*/
 
     subscribe(observer){
             this.rerenderEntireTree = observer;
         }
-}
-
-export const addPostActionCreator = () => {
-    return {
-        type: ADD_POST
-    }
-};
-
-export const updateNewPostTextActionCreator = (text) => {
-    return {
-        type: NEW_POST_TEXT,
-        newText:text}
-};
-
-export const addNewMessageActionCreator = () => {
-    return {
-        type: NEW_MESSAGE
-    }
-};
-
-export const newMessageTextActionCreator = (newMessage) => {
-    return {
-        type: NEW_MESSAGE_TEXT,
-        body: newMessage,
-    }
 };
 
 export default store;
